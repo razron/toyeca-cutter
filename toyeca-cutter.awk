@@ -1,10 +1,12 @@
-BEGIN {
-	FS = ","
+
+BEGIN { #Override comma as a separator with -F
+	if ( FS==" ") {
+		FS=","
+	}
 }
-
+ 
 NR==1 { #First line is the headers for the columns
-        split(c, ca, ",")  #Override comma as a separator with -F
-
+        split(c, ca, ",") 
         #Create Associative Array with the headers we want
         for (i = 1 ; i <= length(ca) ; i++) {
                 gsub(/ /, "", ca[i])
